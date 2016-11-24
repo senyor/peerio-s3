@@ -1,14 +1,34 @@
-# S3 compatible client wrapper based on knox
+# Fair Warning
 
-`npm install ceph-s3 -S`
+This module supersedes `ceph-s3`, as I haven't been able to get my last
+contribution merged in (`dropFile` method).
+If you don't know what you're doing here, you probably just want to use `knox`
+or `ceph-s3`.
+
+# S3 compatible client wrapper based on ceph-s3/knox
+
+```bash
+npm install peerio-s3 -S
+```
 
 ## Usage
 
-I'm pretty lazy and always forget configurations. So, if you add fork this project,
-add a file 'users.json' to the root - then you can use these users, as they will be
-loaded on startup.
+You could use a `users.json` file to your library's root directory, as the
+author suggests.
 
-Otherwise just user ./lib/users or init function to pass your user configuration
+Or you could define a few environment variables starting your processes.
+Here's an exhaustive list, and their defaults:
+
+```bash
+export S3_STORE_PORT=6788
+export S3_STORE_BUCKET_NAME=changeme
+export S3_STORE_STYLE=path
+export S3_STORE_HOST=127.0.0.1
+export S3_STORE_PROTO=http
+```
+
+Otherwise just user ./lib/users or init function to pass your user
+configuration:
 
 ```js
 var S3Client = require('ceph-s3');
@@ -57,4 +77,13 @@ mrwondeful.storeFile(opts, function (err, filename) {
     console.log(filename ? 'Uploaded %s' : 'Failed', filename);
 });
 
+var opts = { filename: 'useless.txt' };
+
+mrwondeful.dropFile(opts, function (err) {
+    if (err) {
+        throw err;
+    }
+
+    console.log('Dropped file');
+});
 ```
