@@ -1,7 +1,5 @@
 # Fair Warning
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/PeerioTechnologies/peerio-s3.svg)](https://greenkeeper.io/)
-
 This module supersedes `ceph-s3`, as I haven't been able to get my last
 contribution merged in (`dropFile` method).
 If you don't know what you're doing here, you probably just want to use `knox`
