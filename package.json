@@ -43,7 +43,7 @@
     "backoff": "^2.5.0",
     "bluebird": "^3.4.7",
     "debug": "latest",
-    "knox": "^0.9.2",
+    "myknox": "^0.9.3",
     "lodash": "^4.17.3",
     "snyk": "^1.22.1"
   },
