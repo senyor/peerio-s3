@@ -1,6 +1,6 @@
 {
   "name": "peerio-s3",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Knox wrapper",
   "main": "index.js",
   "scripts": {
