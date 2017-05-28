@@ -4,9 +4,7 @@
   "description": "Knox wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -44,8 +42,6 @@
     "bluebird": "^3.4.7",
     "debug": "latest",
     "myknox": "^0.9.3",
-    "lodash": "^4.17.3",
-    "snyk": "^1.22.1"
-  },
-  "snyk": true
+    "lodash": "^4.17.3"
+  }
 }
