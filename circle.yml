@@ -1,6 +1,46 @@
-machine:
-  node:
-   version: 6.9.1
-test:
-  override:
-    - make unittest
+defaults: &defaults
+  docker:
+    - image: circleci/node:10-stretch
+  working_directory: ~/repo
+  
+version: 2
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: npm test
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - store_artifacts:
+          path: coverage
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - index.js
+            - lib/
+            - doc/
+            - package.json
+            - package-lock.json
+            - node_modules
+            - .git/
+  release:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run: npm run semantic-release
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test
+      - release:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
